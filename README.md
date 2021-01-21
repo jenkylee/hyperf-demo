@@ -11,8 +11,8 @@ dev 混合开发分支， 测试分支
 
 ### 安装
 ```
-git clone git@git.yokitalk.com:jenkylee/chuangke-ccs.git
-cd chuangke-ccs
+git clone https://github.com/jenkylee/hyperf-demo.git
+cd hyperf-demo
 composer install --prefer-dist --no-dev --optimize-autoloader
 composer dump-auto --optimize
 cp .env.example .env
@@ -25,10 +25,10 @@ php bin/hyperf.php start
 php bin/hyperf.php stop
 
 生产环境需开启守护配置：
-vi /etc/supervisord.d/chuangke-ccs.ini
-[program:chuangke-ccs]
+vi /etc/supervisord.d/hyperf-demo.ini
+[program:hyperf-demo]
 # 设置命令在指定的目录内执行
-directory=/data/www/chuangke-ccs/
+directory=/data/www/hyperf-demo/
 # 这里为您要管理的项目的启动命令
 command=php bin/hyperf.php start
 # 以哪个用户来运行该进程
@@ -44,19 +44,19 @@ startretries=3
 # 整个进程组关闭
 stopasgroup=true
 # stderr 日志输出位置
-stderr_logfile=/data/www/chuangke-ccs/runtime/stderr.log
+stderr_logfile=/data/www/hyperf-demo/runtime/stderr.log
 # stdout 日志输出位置
-stdout_logfile=/data/www/chuangke-ccs/runtime/stdout.log
+stdout_logfile=/data/www/hyperf-demo/runtime/stdout.log
 
 # 启动supervisord
 supervisord -c /etc/supervisord.conf
 
 # 启动 hyperf 应用
-supervisorctl start chuangke-ccs
+supervisorctl start hyperf-demo
 # 重启 hyperf 应用
-supervisorctl restart chuangke-ccs
+supervisorctl restart hyperf-demo
 # 停止 hyperf 应用
-supervisorctl stop chuangke-ccs  
+supervisorctl stop hyperf-demo  
 # 查看所有被管理项目运行状态
 supervisorctl status
 # 重新加载配置文件
@@ -70,16 +70,16 @@ supervisorctl reload
 
 ```
 cd /data/www
-chown -R www:www chuangke-ccs
+chown -R www:www hyperf-demo
 
 ```
 ### 部分目录权限
 ```
 cd /data/www
-mkdir -p chuangke-ccs/runtime
-chmod 777 -R chuangke-ccs/runtime
-chmod 755 -R chuangke-ccs/vendor
+mkdir -p hyperf-demo/runtime
+chmod 777 -R hyperf-demo/runtime
+chmod 755 -R hyperf-demo/vendor
 
-mkdir -p chuangke-ccs/public/upload
-chmod 777 -R chuangke-ccs/public/upload
+mkdir -p hyperf-demo/public/upload
+chmod 777 -R hyperf-demo/public/upload
 ```

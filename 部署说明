@@ -1,6 +1,6 @@
 安装nginx并配置虚拟机
 虚拟机配置
-upstream chuangke-ccs-pre {
+upstream hyperf-demo {
     # Hyperf HTTP Server 的 IP 及 端口
     server 127.0.0.1:19502;
 }
@@ -9,11 +9,11 @@ server {
     # 监听端口
     listen      443 ssl;
     # 绑定的域名，填写您的域名
-    server_name pre-aiserver-ccs.chuangke100.com;
-    root /data/www/chuangke-ccs/public;
+    server_name demo.example.com;
+    root /data/www/hyperf-demo/public;
 
-    ssl_certificate     /data/conf/ssl/3108253_wordapi.yokitalk.com.pem;
-    ssl_certificate_key /data/conf/ssl/3108253_wordapi.yokitalk.com.key;
+    ssl_certificate     /data/conf/ssl/3108253_demo.example.com.pem;
+    ssl_certificate_key /data/conf/ssl/3108253_demo.example.com.key;
 
     ssl_session_timeout         5m;
     ssl_protocols         TLSv1 TLSv1.1 TLSv1.2;
@@ -40,7 +40,7 @@ server {
         proxy_set_header Server-Addr $server_addr;
         proxy_set_header Server-Port $server_port;
         # 执行代理访问真实服务器
-        proxy_pass http://chuangke-ccs-pre;
+        proxy_pass http://hyperf-demo;
     }
 }
 
@@ -49,8 +49,8 @@ server {
     listen 80;
     listen       [::]:80;
     # 绑定的域名，填写您的域名
-    server_name pre-aiserver-ccs.chuangke100.com;
-    root /data/www/chuangke-ccs/public;
+    server_name demo.example.com;
+    root /data/www/hyperf-demo/public;
     location / {
        try_files $uri @hyperfloc;
     }
@@ -72,6 +72,6 @@ server {
         proxy_set_header Server-Addr $server_addr;
         proxy_set_header Server-Port $server_port;
         # 执行代理访问真实服务器
-        proxy_pass http://chuangke-ccs-pre;
+        proxy_pass http://hyperf-demo;
     }
 }
