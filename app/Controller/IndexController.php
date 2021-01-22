@@ -36,7 +36,6 @@ class IndexController extends AbstractController
     {
         //cache()->set('test:2456', 'Hello World.');
         //cache()->delete('test:2456');
-
         return $this->json(
             [
                 'code' => ErrorCode::SUCCESS,
