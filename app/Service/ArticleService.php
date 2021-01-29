@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Model\Article;
 use App\Model\Audio;
-use App\Model\HomeworkItem;
 use Hyperf\Di\Annotation\Inject;
 
 class ArticleService extends Service
